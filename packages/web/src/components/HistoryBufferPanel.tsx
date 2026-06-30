@@ -68,6 +68,7 @@ interface HistoryEntryCardProps {
 
 function HistoryEntryCard({ entry, onUpdate, onDelete }: HistoryEntryCardProps) {
   const [editing, setEditing] = useState(false);
+  const [showReasoning, setShowReasoning] = useState(true);
 
   const roleBadge =
     entry.role === "user" ? "cute-badge-user" : "cute-badge-assistant";
@@ -115,8 +116,17 @@ function HistoryEntryCard({ entry, onUpdate, onDelete }: HistoryEntryCardProps) 
       </div>
 
       {entry.role === "assistant" && entry.reasoningContent && (
-        <div className="cute-thinking" style={{ marginBottom: 6 }}>
-          {entry.reasoningContent}
+        <div style={{ marginBottom: 6 }}>
+          <button
+            className="cute-btn-sm"
+            onClick={() => setShowReasoning(!showReasoning)}
+            style={{ marginBottom: showReasoning ? 6 : 0 }}
+          >
+            {showReasoning ? "收起" : "展开"} 思考过程
+          </button>
+          {showReasoning && (
+            <div className="cute-thinking">{entry.reasoningContent}</div>
+          )}
         </div>
       )}
 
