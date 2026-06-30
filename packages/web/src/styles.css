@@ -1,0 +1,388 @@
+:root {
+  --pink-50: #fce4ec;
+  --pink-100: #f8bbd0;
+  --pink-200: #f48fb1;
+  --pink-300: #f06292;
+  --pink-400: #ec407a;
+  --purple-100: #e1bee7;
+  --purple-200: #ce93d8;
+  --purple-300: #ba68c8;
+  --cream: #fff5f7;
+  --bg-main: #fef9fb;
+  --bg-card: #ffffff;
+  --text-primary: #4a3548;
+  --text-secondary: #8a7a88;
+  --text-muted: #b8a8b6;
+  --border-soft: #f0e0e8;
+  --shadow-soft: 0 2px 12px rgba(200, 150, 180, 0.12);
+  --shadow-hover: 0 4px 20px rgba(200, 150, 180, 0.2);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --font-cute: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-cute);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pink-100);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-200);
+}
+
+/* Sidebar */
+.cute-sidebar {
+  background: linear-gradient(180deg, #fce4ec 0%, #f3e5f5 100%);
+  border-right: 1px solid var(--border-soft);
+}
+
+.cute-sidebar-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.cute-sidebar-btn:hover {
+  background: rgba(255,255,255,0.6);
+  color: var(--pink-400);
+}
+
+.cute-story-item {
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cute-story-item:hover {
+  background: rgba(255,255,255,0.7);
+}
+.cute-story-item.active {
+  background: rgba(255,255,255,0.85);
+  box-shadow: var(--shadow-soft);
+  font-weight: 600;
+}
+
+.cute-story-item .del-btn {
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.cute-story-item:hover .del-btn {
+  opacity: 1;
+}
+
+/* Cards */
+.cute-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.2s;
+}
+.cute-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Inputs */
+.cute-input {
+  font-family: var(--font-cute);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cute-input:focus {
+  border-color: var(--pink-200);
+  box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.15);
+}
+
+.cute-textarea {
+  font-family: var(--font-cute);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--cream);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  line-height: 1.6;
+}
+.cute-textarea:focus {
+  border-color: var(--pink-200);
+  box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.15);
+}
+
+/* Buttons */
+.cute-btn {
+  font-family: var(--font-cute);
+  background: linear-gradient(135deg, var(--pink-100), var(--purple-100));
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 8px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 2px 8px rgba(200, 150, 180, 0.2);
+  font-weight: 500;
+}
+.cute-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(200, 150, 180, 0.3);
+}
+.cute-btn:active {
+  transform: translateY(0);
+}
+.cute-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cute-btn-sm {
+  font-family: var(--font-cute);
+  background: none;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cute-btn-sm:hover {
+  background: var(--pink-50);
+  border-color: var(--pink-100);
+  color: var(--pink-400);
+}
+
+.cute-btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 16px;
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+  line-height: 1;
+}
+.cute-btn-icon:hover {
+  color: var(--pink-400);
+  background: rgba(244, 143, 177, 0.1);
+}
+
+/* Tab bar */
+.cute-tab {
+  font-family: var(--font-cute);
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.cute-tab:hover {
+  color: var(--pink-300);
+}
+.cute-tab.active {
+  color: var(--pink-400);
+  border-bottom-color: var(--pink-300);
+}
+
+/* Checkbox */
+.cute-checkbox {
+  accent-color: var(--pink-200);
+  cursor: pointer;
+}
+
+/* Section headings */
+.cute-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* History entries */
+.cute-history-entry {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  transition: all 0.2s;
+}
+.cute-history-entry:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Overlay / Modal */
+.cute-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(200, 150, 180, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 49;
+}
+
+.cute-drawer {
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-soft);
+  box-shadow: -4px 0 20px rgba(200, 150, 180, 0.15);
+}
+
+/* Badge / label */
+.cute-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-xl);
+  font-size: 12px;
+  font-weight: 500;
+}
+.cute-badge-user {
+  background: var(--pink-50);
+  color: var(--pink-400);
+}
+.cute-badge-assistant {
+  background: #e8f5e9;
+  color: #66bb6a;
+}
+.cute-badge-interrupted {
+  background: #fff3e0;
+  color: #ffa726;
+}
+
+/* Thinking tab */
+.cute-thinking {
+  background: #faf5ff;
+  border: 1px solid var(--purple-100);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Generate button special */
+.cute-btn-generate {
+  font-family: var(--font-cute);
+  background: linear-gradient(135deg, var(--pink-300), var(--purple-300));
+  color: white;
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 10px 32px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 3px 12px rgba(240, 98, 146, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.cute-btn-generate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 98, 146, 0.4);
+}
+.cute-btn-generate:active {
+  transform: translateY(0);
+}
+.cute-btn-generate:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Placeholder text */
+::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+/* App layout */
+.cute-app {
+  display: flex;
+  height: 100vh;
+}
+
+.cute-main {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cute-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cute-title {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.cute-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border-soft);
+}
+
+/* Confirm dialog */
+.cute-confirm {
+  color: var(--pink-400);
+  font-size: 11px;
+  background: none;
+  border: 1px solid var(--pink-200);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.cute-confirm:hover {
+  background: var(--pink-50);
+}

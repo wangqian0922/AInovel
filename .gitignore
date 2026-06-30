@@ -1,0 +1,5 @@
+node_modules/
+dist/
+workspace.json
+*.log
+.DS_Store
