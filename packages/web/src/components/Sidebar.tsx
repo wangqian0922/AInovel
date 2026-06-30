@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { Story } from "@ai-novel/core";
 import { createDefaultStory } from "@ai-novel/core";
 
@@ -21,8 +20,6 @@ export function Sidebar({
   onAdd,
   onDelete,
 }: SidebarProps) {
-  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
-
   if (collapsed) return null;
 
   return (
@@ -65,40 +62,16 @@ export function Sidebar({
           <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis" }}>
             {story.title}
           </span>
-          {confirmDelete === story.id ? (
-            <span style={{ display: "flex", gap: 2, flexShrink: 0 }}>
-              <button
-                className="cute-confirm"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onDelete(story.id);
-                  setConfirmDelete(null);
-                }}
-              >
-                确认
-              </button>
-              <button
-                className="cute-btn-icon"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setConfirmDelete(null);
-                }}
-              >
-                x
-              </button>
-            </span>
-          ) : (
-            <button
-              className="cute-btn-icon del-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                setConfirmDelete(story.id);
-              }}
-              title="删除故事"
-            >
-              &times;
-            </button>
-          )}
+          <button
+            className="cute-btn-icon del-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(story.id);
+            }}
+            title="删除故事"
+          >
+            &times;
+          </button>
         </div>
       ))}
     </aside>

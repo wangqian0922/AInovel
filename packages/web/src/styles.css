@@ -477,19 +477,7 @@ body {
   box-shadow: var(--shadow-hover);
 }
 
-/* Confirm dialog */
-.cute-confirm {
-  color: var(--pink-400);
-  font-size: 11px;
-  background: none;
-  border: 1px solid var(--pink-200);
-  border-radius: var(--radius-sm);
-  padding: 2px 6px;
-  cursor: pointer;
-}
-.cute-confirm:hover {
-  background: var(--pink-50);
-}
+
 
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
