@@ -23,24 +23,7 @@ export function Sidebar({
 }: SidebarProps) {
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
-  if (collapsed) {
-    return (
-      <aside
-        className="cute-sidebar"
-        style={{
-          width: 36,
-          padding: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <button className="cute-sidebar-btn" onClick={onToggleCollapse} title="展开侧栏">
-          &raquo;
-        </button>
-      </aside>
-    );
-  }
+  if (collapsed) return null;
 
   return (
     <aside

@@ -182,6 +182,15 @@ export function App() {
         onDelete={deleteStory}
       />
 
+      {sidebarCollapsed && (
+        <button
+          className="cute-sidebar-toggle"
+          onClick={() => setSidebarCollapsed(false)}
+          title="展开侧栏"
+        >
+          &#9776;
+        </button>
+      )}
       <main className="cute-main">
         <div className="cute-header">
           <h1 className="cute-title">{activeStory.title}</h1>
