@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { HistoryEntry } from "@ai-novel/core";
 import { MarkdownEditor } from "./MarkdownEditor";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 
 interface HistoryBufferPanelProps {
   entries: HistoryEntry[];
@@ -126,18 +127,7 @@ function HistoryEntryCard({ entry, onUpdate, onDelete }: HistoryEntryCardProps) 
           minRows={3}
         />
       ) : (
-        <pre
-          style={{
-            fontSize: 13,
-            whiteSpace: "pre-wrap",
-            margin: 0,
-            fontFamily: "inherit",
-            color: "var(--text-primary)",
-            lineHeight: 1.6,
-          }}
-        >
-          {entry.content}
-        </pre>
+        <MarkdownRenderer content={entry.content} />
       )}
     </div>
   );

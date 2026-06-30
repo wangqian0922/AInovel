@@ -416,6 +416,99 @@ body {
   box-shadow: none;
 }
 
+/* Markdown rendered content */
+.cute-markdown {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+.cute-markdown p {
+  margin: 0 0 8px;
+}
+.cute-markdown p:last-child {
+  margin-bottom: 0;
+}
+.cute-markdown ul,
+.cute-markdown ol {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+.cute-markdown li {
+  margin-bottom: 2px;
+}
+.cute-markdown h1,
+.cute-markdown h2,
+.cute-markdown h3,
+.cute-markdown h4 {
+  margin: 12px 0 6px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.cute-markdown h1 { font-size: 16px; }
+.cute-markdown h2 { font-size: 15px; }
+.cute-markdown h3 { font-size: 14px; }
+.cute-markdown blockquote {
+  margin: 6px 0;
+  padding: 4px 12px;
+  border-left: 3px solid var(--pink-200);
+  color: var(--text-secondary);
+  background: var(--cream);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.cute-markdown code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--cream);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--pink-400);
+}
+.cute-markdown pre {
+  background: var(--cream);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  overflow-x: auto;
+  margin: 6px 0;
+}
+.cute-markdown pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+.cute-markdown a {
+  color: var(--pink-400);
+  text-decoration: none;
+}
+.cute-markdown a:hover {
+  text-decoration: underline;
+}
+.cute-markdown hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 12px 0;
+}
+.cute-markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 8px 0;
+  font-size: 12px;
+}
+.cute-markdown th,
+.cute-markdown td {
+  border: 1px solid var(--border-soft);
+  padding: 6px 10px;
+  text-align: left;
+}
+.cute-markdown th {
+  background: var(--cream);
+  font-weight: 600;
+}
+.cute-markdown img {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+}
+
 /* Placeholder text */
 ::placeholder {
   color: var(--text-muted);
