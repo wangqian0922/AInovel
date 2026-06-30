@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { HistoryEntry } from "@ai-novel/core";
 import { assemblePrompt, validateProject } from "@ai-novel/core";
 import { useWorkspace } from "./hooks/useWorkspace";
@@ -43,6 +43,12 @@ export function App() {
   const [showPreview, setShowPreview] = useState(false);
   const [showStateEditor, setShowStateEditor] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem("ainovel-theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("ainovel-theme", theme);
+  }, [theme]);
 
   const handleUpdateStory = useCallback(
     (partial: Parameters<typeof updateStory>[1]) => {
@@ -280,6 +286,8 @@ export function App() {
 
       {showSettings && (
         <SettingsPanel
+          theme={theme}
+          onThemeChange={setTheme}
           settings={workspace.settings}
           onChange={(s) => update(() => ({ ...workspace, settings: s }))}
           onClose={() => setShowSettings(false)}
@@ -287,16 +295,15 @@ export function App() {
       )}
 
       {showStateEditor && (
-        <>
-          <div className="cute-overlay" onClick={() => setShowStateEditor(false)} />
-          <StateSetDrawer
-            stateSet={activeStory.stateSet}
-            recentOutput={lastAssistantEntry}
-            onClose={() => setShowStateEditor(false)}
-            onChange={(ss) => handleUpdateStory({ stateSet: ss })}
-          />
-        </>
+        <div className="cute-overlay" onClick={() => setShowStateEditor(false)} />
       )}
+      <StateSetDrawer
+        open={showStateEditor}
+        stateSet={activeStory.stateSet}
+        recentOutput={lastAssistantEntry}
+        onClose={() => setShowStateEditor(false)}
+        onChange={(ss) => handleUpdateStory({ stateSet: ss })}
+      />
     </div>
   );
 }

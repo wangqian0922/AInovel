@@ -1,12 +1,16 @@
 import type { Settings } from "@ai-novel/core";
 
 interface SettingsPanelProps {
+  theme: string;
+  onThemeChange: (theme: string) => void;
   settings: Settings;
   onChange: (settings: Settings) => void;
   onClose: () => void;
 }
 
 export function SettingsPanel({
+  theme,
+  onThemeChange,
   settings,
   onChange,
   onClose,
@@ -71,6 +75,21 @@ export function SettingsPanel({
           >
             <option value="deepseek-v4-flash">deepseek-v4-flash</option>
             <option value="deepseek-v4-pro">deepseek-v4-pro</option>
+          </select>
+        </label>
+
+        <label>
+          <div style={{ fontSize: 13, marginBottom: 4, color: "var(--text-secondary)" }}>
+            主题
+          </div>
+          <select
+            className="cute-input"
+            value={theme}
+            onChange={(e) => onThemeChange(e.target.value)}
+            style={{ width: "100%" }}
+          >
+            <option value="light">浅色</option>
+            <option value="dark">深色</option>
           </select>
         </label>
 

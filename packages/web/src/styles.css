@@ -23,6 +23,77 @@
   --font-cute: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
+[data-theme="dark"] {
+  --pink-50: #3a2540;
+  --pink-100: #5a3570;
+  --pink-200: #d488b8;
+  --pink-300: #e8a0c8;
+  --pink-400: #f0b0d8;
+  --purple-100: #6a4590;
+  --purple-200: #a080d0;
+  --purple-300: #c890f0;
+  --cream: #1e1428;
+  --bg-main: #120a18;
+  --bg-card: #1e1428;
+  --text-primary: #e8d8f0;
+  --text-secondary: #b8a8c8;
+  --text-muted: #7a6a88;
+  --border-soft: #2a1e38;
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .cute-sidebar {
+  background: linear-gradient(180deg, #1a0e28 0%, #2a1a38 100%);
+}
+
+[data-theme="dark"] .cute-sidebar-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .cute-story-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .cute-story-item.active {
+  background: rgba(255,255,255,0.1);
+}
+
+[data-theme="dark"] .cute-btn-icon:hover {
+  background: rgba(200, 150, 180, 0.1);
+}
+
+[data-theme="dark"] .cute-badge-assistant {
+  background: #1a3a1a;
+  color: #88d888;
+}
+
+[data-theme="dark"] .cute-badge-interrupted {
+  background: #3a2a10;
+  color: #ddaa44;
+}
+
+[data-theme="dark"] .cute-thinking {
+  background: #1a0e28;
+  border-color: #3a2a58;
+}
+
+[data-theme="dark"] .cute-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .cute-btn-generate {
+  box-shadow: 0 3px 12px rgba(200, 100, 150, 0.2);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #3a2a48;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #5a4a68;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -273,6 +344,17 @@ body {
   box-shadow: -4px 0 20px rgba(200, 150, 180, 0.15);
 }
 
+.cute-drawer-state {
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  width: 50%;
+  max-width: 600px;
+}
+
+.cute-drawer-state.open {
+  transform: translateX(0);
+}
+
 /* Badge / label */
 .cute-badge {
   display: inline-block;
@@ -407,4 +489,16 @@ body {
 }
 .cute-confirm:hover {
   background: var(--pink-50);
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .cute-main {
+    padding: 10px;
+  }
+
+  .cute-drawer-state {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }

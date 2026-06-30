@@ -3,6 +3,7 @@ import type { StateSet, StateDocument, HistoryEntry } from "@ai-novel/core";
 import { MarkdownEditor } from "./MarkdownEditor";
 
 interface StateSetDrawerProps {
+  open: boolean;
   stateSet: StateSet;
   recentOutput: HistoryEntry | null;
   onClose: () => void;
@@ -14,6 +15,7 @@ function generateId(): string {
 }
 
 export function StateSetDrawer({
+  open,
   stateSet,
   recentOutput,
   onClose,
@@ -63,14 +65,12 @@ export function StateSetDrawer({
 
   return (
     <div
-      className="cute-drawer"
+      className={`cute-drawer cute-drawer-state${open ? " open" : ""}`}
       style={{
         position: "fixed",
         top: 0,
         right: 0,
         bottom: 0,
-        width: "50%",
-        maxWidth: 600,
         display: "flex",
         flexDirection: "column",
         zIndex: 50,
