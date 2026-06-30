@@ -169,14 +169,21 @@ export function WorldBookPanel({
               }}
               onClick={() => setExpandedBookId(isExpanded ? null : book.id)}
             >
-              <span style={{ flex: 1 }}>
-                <input
-                  value={book.name}
-                  onChange={(e) => updateBook(book.id, { name: e.target.value })}
-                  onClick={(e) => e.stopPropagation()}
-                  className="cute-input"
-                  style={{ width: "100%", fontSize: 13, fontWeight: 600 }}
-                />
+              <span style={{ fontSize: 12, color: "var(--text-muted)", marginRight: 4 }}>
+                {isExpanded ? "▾" : "▸"}
+              </span>
+              <span style={{ flex: 1, fontSize: 14, fontWeight: 600 }}>
+                {isExpanded ? (
+                  <input
+                    value={book.name}
+                    onChange={(e) => updateBook(book.id, { name: e.target.value })}
+                    onClick={(e) => e.stopPropagation()}
+                    className="cute-input"
+                    style={{ width: "100%", fontSize: 13, fontWeight: 600 }}
+                  />
+                ) : (
+                  book.name || "（未命名）"
+                )}
               </span>
               <label
                 style={{ fontSize: 12, whiteSpace: "nowrap", color: "var(--text-secondary)" }}
