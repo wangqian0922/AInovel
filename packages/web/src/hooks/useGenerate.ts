@@ -116,12 +116,10 @@ export function useGenerate() {
             }
           }
 
-          if (interrupted) {
-            setState((s) => ({
-              ...s,
-              generating: false,
-            }));
-          }
+          setState((s) => ({
+            ...s,
+            generating: false,
+          }));
 
           resolve({ content: fullContent, reasoning: fullReasoning, interrupted });
         }).catch((err) => {

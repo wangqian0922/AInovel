@@ -38,6 +38,9 @@ export async function streamGenerate(
   }
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
+
     const response = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -45,7 +48,10 @@ export async function streamGenerate(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify(body),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const errorText = await response.text().catch(() => "Unknown error");
@@ -99,6 +105,8 @@ export async function streamGenerate(
 
     callbacks.onDone(fullContent, fullReasoning);
   } catch (err) {
-    callbacks.onError(err instanceof Error ? err : new Error(String(err)));
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error("[DeepSeek Adapter]", error.message);
+    callbacks.onError(error);
   }
 }

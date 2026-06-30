@@ -82,7 +82,7 @@ export const DEFAULT_SETTINGS: Settings = {
   historyLimit: 200,
   historyDisplayLimit: 200,
   modelProvider: "deepseek",
-  model: "deepseek-chat",
+  model: "deepseek-v4-flash",
   deepSeekBaseUrl: "https://api.deepseek.com",
   stream: true,
   thinking: true,

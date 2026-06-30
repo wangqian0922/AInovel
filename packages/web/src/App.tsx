@@ -14,7 +14,7 @@ import { PromptPreviewModal } from "./components/PromptPreviewModal";
 import { StateSetDrawer } from "./components/StateSetDrawer";
 import { SettingsPanel } from "./components/SettingsPanel";
 
-type EditorTab = "session" | "systemInsert" | "worldBook" | null;
+type EditorTab = "history" | "session" | "systemInsert" | "worldBook";
 
 function generateId(): string {
   return crypto.randomUUID();
@@ -39,7 +39,7 @@ export function App() {
   const { generateState, startGeneration, cancelGeneration } = useGenerate();
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeTab, setActiveTab] = useState<EditorTab>(null);
+  const [activeTab, setActiveTab] = useState<EditorTab>("history");
   const [showPreview, setShowPreview] = useState(false);
   const [showStateEditor, setShowStateEditor] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -197,6 +197,7 @@ export function App() {
 
         <div className="cute-tabs">
           {[
+            { key: "history" as const, label: "对话" },
             { key: "session" as const, label: "会话" },
             { key: "systemInsert" as const, label: "系统提示" },
             { key: "worldBook" as const, label: "世界书" },
@@ -204,15 +205,36 @@ export function App() {
             <button
               key={tab.key}
               className={`cute-tab${activeTab === tab.key ? " active" : ""}`}
-              onClick={() =>
-                setActiveTab(activeTab === tab.key ? null : tab.key)
-              }
+              onClick={() => setActiveTab(tab.key)}
             >
               {tab.label}
             </button>
           ))}
         </div>
 
+        {activeTab === "history" && (
+          <>
+            <StateSetPanel
+              stateSet={activeStory.stateSet}
+              onOpenEditor={() => setShowStateEditor(true)}
+            />
+
+            <HistoryBufferPanel
+              entries={displayHistory}
+              displayLimit={workspace.settings.historyDisplayLimit}
+              onUpdate={handleHistoryUpdate}
+              onDelete={handleHistoryDelete}
+            />
+
+            <UserInputPanel
+              value={activeStory.userInputDraft}
+              onChange={(c) => handleUpdateStory({ userInputDraft: c })}
+              onGenerate={handleGenerate}
+              generating={generateState.generating}
+              canGenerate={canGenerate}
+            />
+          </>
+        )}
         {activeTab === "session" && (
           <SessionPanel
             content={activeStory.session}
@@ -241,26 +263,6 @@ export function App() {
             }}
           />
         )}
-
-        <StateSetPanel
-          stateSet={activeStory.stateSet}
-          onOpenEditor={() => setShowStateEditor(true)}
-        />
-
-        <HistoryBufferPanel
-          entries={displayHistory}
-          displayLimit={workspace.settings.historyDisplayLimit}
-          onUpdate={handleHistoryUpdate}
-          onDelete={handleHistoryDelete}
-        />
-
-        <UserInputPanel
-          value={activeStory.userInputDraft}
-          onChange={(c) => handleUpdateStory({ userInputDraft: c })}
-          onGenerate={handleGenerate}
-          generating={generateState.generating}
-          canGenerate={canGenerate}
-        />
       </main>
 
       {showPreview && (

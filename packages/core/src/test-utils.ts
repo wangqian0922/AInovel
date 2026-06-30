@@ -105,7 +105,7 @@ export function makeTestWorkspace(overrides?: Partial<Workspace>): Workspace {
       historyLimit: 200,
       historyDisplayLimit: 200,
       modelProvider: "deepseek",
-      model: "deepseek-chat",
+      model: "deepseek-v4-flash",
       deepSeekBaseUrl: "https://api.deepseek.com",
       stream: true,
       thinking: true,

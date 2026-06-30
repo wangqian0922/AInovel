@@ -69,8 +69,8 @@ export function SettingsPanel({
             onChange={(e) => update({ model: e.target.value })}
             style={{ width: "100%" }}
           >
-            <option value="deepseek-chat">deepseek-chat</option>
-            <option value="deepseek-reasoner">deepseek-reasoner</option>
+            <option value="deepseek-v4-flash">deepseek-v4-flash</option>
+            <option value="deepseek-v4-pro">deepseek-v4-pro</option>
           </select>
         </label>
 
